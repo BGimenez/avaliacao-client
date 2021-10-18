@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 
 import { PessoaService } from 'src/app/services/pessoa.service';
 
-import { Pessoa } from 'src/app/model/pessoa';
+import { Contato, Pessoa } from 'src/app/model/pessoa';
 
 @Component({
   selector: 'app-pessoa-formulario',
@@ -18,6 +18,7 @@ export class PessoaFormularioComponent implements OnInit, OnDestroy {
   inscricao: Subscription;
   modoEdicao: boolean = false;
   formulario: FormGroup
+  formularioContato: FormGroup
 
   constructor(
     private aRoute: ActivatedRoute,
@@ -54,10 +55,14 @@ export class PessoaFormularioComponent implements OnInit, OnDestroy {
 
   montarFormulario(dados) {
     this.formulario = Pessoa.montarFormulario(dados);
+    this.formularioContato = Contato.montarFormulario(new Contato());
   }
 
   onSalvar() {
-    this.inscricao = this.pessoaService.salvar(this.formulario.getRawValue()).subscribe(ret => {
+    let pessoa = this.formulario.getRawValue();
+    pessoa.contatos.push(this.formularioContato.getRawValue());
+
+    this.inscricao = this.pessoaService.salvar(pessoa).subscribe(ret => {
       this.onVoltar();
     },
     erro => console.log(erro))

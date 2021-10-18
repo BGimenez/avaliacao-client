@@ -38,9 +38,27 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row" *ngIf="!modoEdicao">
+          <div class="col-md-12" [formGroup]="formularioContato">
+              <div class="row">
+                <div class="form-group col-md-8" [ngClass]="aplicaCssErro('nome', formularioContato)">
+                  <label for="txtNome">Nome</label>
+                  <input id="txtNome" name="txtNome" type="text" class="form-control" formControlName="nome">
+                  <app-mensagem campo="nome" [formulario]="formularioContato" nomeCampo="Nome"></app-mensagem>
+                </div>
 
+                <div class="col-md-4 form-group" [ngClass]="aplicaCssErro('telefone', formularioContato)">
+                  <label for="txtTelefone">Telefone</label>
+                  <input id="txtTelefone" name="txtTelefone" type="text" class="form-control" formControlName="telefone">
+                  <app-mensagem campo="telefone" [formulario]="formularioContato" nomeCampo="Telefone"></app-mensagem>
+                </div>
+
+                <div class="col-md-4 form-group" [ngClass]="aplicaCssErro('email', formularioContato)">
+                  <label for="txtEmail">Email</label>
+                  <input id="txtEmail" name="txtEmail" type="email" class="form-control" formControlName="email">
+                  <app-mensagem campo="email" [formulario]="formularioContato" nomeCampo="Email"></app-mensagem>
+                </div>
+              </div>
           </div>
         </div>
       </div>
