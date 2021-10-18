@@ -25,22 +25,7 @@ export class PessoaService {
      * Obtem as mensagens de erro da requisição e trata para serem exibidas.
      */
     obterErro(erro: HttpErrorResponse) {
-      // if ( erro.error instanceof ErrorEvent ) {
-          console.log('Ocorreu um erro: ', erro.error.message);
-      // } else {
-      //     console.log(`Backend retornou o codigo ${erro.status}`);
-      //     try {
-      //         if ( erro.error.length > 0 ) {
-      //             const mensagemUsuario = erro.error[0].message;
-      //             const mensagemDesenvolvedor = erro.error[0].exception;
-      //             console.log(mensagemDesenvolvedor);
-      //             return throwError(mensagemUsuario);
-      //         }
-      //     } catch (error) {
-      //         // HttpStatus.NOT_FOUND
-      //         return throwError('Registro não encontrado. Por favor, verifique.');
-      //     }
-      // }
+      console.log('Ocorreu um erro: ', erro.error.message);
       return throwError('Opa, tivemos um problema');
   }
 

@@ -15,7 +15,7 @@ export class Pessoa {
 
   static montarFormulario(dados: Pessoa): FormGroup {
     return new FormGroup({
-      id: new FormControl(dados.id),
+      id: new FormControl({ value: dados.id, disabled: true }),
       nome: new FormControl(dados.nome, [Validators.required]),
       cpf: new FormControl(dados.cpf, [Validators.required, Validacoes.soNumeroValidator]),
       dataNascimento: new FormControl(dados.dataNascimento, [Validators.required]),

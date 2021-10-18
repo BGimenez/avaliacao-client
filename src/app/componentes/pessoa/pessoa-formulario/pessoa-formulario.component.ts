@@ -57,13 +57,17 @@ export class PessoaFormularioComponent implements OnInit, OnDestroy {
   }
 
   onSalvar() {
-    //TODO: Rotina de salvar;
-    console.log(this.formulario);
+    this.inscricao = this.pessoaService.salvar(this.formulario.getRawValue()).subscribe(ret => {
+      this.onVoltar();
+    },
+    erro => console.log(erro))
   }
 
   onExcluir() {
-    //TODO: Rotina de excluir;
-    console.log(this.formulario);
+    this.inscricao = this.pessoaService.excluir(this.formulario.get('id').value).subscribe(ret => {
+      this.onVoltar();
+    },
+    erro => console.log(erro))
   }
 
   onVoltar(){
