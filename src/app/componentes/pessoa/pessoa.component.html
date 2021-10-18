@@ -1,0 +1,110 @@
+<div class="row">
+  <div class="col-md 12">
+
+    <div class="card">
+      <div class="card-header">
+        <h4>Cadastro de Pessoa</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+              <form [formGroup]="formulario" >
+                <div class="row">
+                  <div class="form-group col-md-2">
+                    <label for="txtId">Código</label>
+                    <input id="txtId" name="txtId" type="number" class="form-control" formControlName="id">
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="txtNome">Nome</label>
+                    <input id="txtNome" name="txtNome" type="text" class="form-control" formControlName="nome">
+                  </div>
+
+                  <div class="col-md-4 form-group">
+                    <label for="txtCpf">CPF</label>
+                    <input id="txtCpf" name="txtCpf" type="text" class="form-control" formControlName="cpf">
+                  </div>
+                </div>
+              </form>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-6 text-right">
+            <button mat-raised-button class="btn btn-success" (click)="onCadastrar()" >
+              <span class="btn-label">
+              </span>
+              Cadastrar
+            </button>
+            <button class="btn btn-outline-info" (click)="onPesquisar()">
+              Pesquisar
+            </button>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+          <div class="col-md-12 material-datatables">
+            <ngx-datatable
+              class="material striped"
+              style="cursor: pointer;"
+              [messages]="mensagem"
+              [columnMode]="'flex'"
+              [rowHeight]="'auto'"
+              [sortType]="'multi'"
+              selectionType="SelectionType.single"
+              [externalPaging]="true"
+              [rows]="consulta.conteudo"
+              [count]="consulta.totalResultados"
+              [offset]="consulta.numeroPagina"
+              [limit]="consulta.tamanhoPagina"
+              (page)="onMudarPagina($event)"
+              (select)="onSelecionar($event)"
+              (activate)="onAtivar($event)">
+
+              <ngx-datatable-column prop="id" name="Código" [flexGrow]="0.5" headerClass="text-center">
+                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                  <div style="text-align: center;">
+                    Código
+                  </div>
+                </ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <div style="text-align: center;">
+                    <label style="word-break: break-word"> {{ value }} </label>
+                  </div>
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column prop="nome" name="Nome" [flexGrow]="2" headerClass="text-center">
+                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                  <div style="text-align: center;">
+                    Nome
+                  </div>
+                </ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <div style="text-align: center;">
+                    <label style="word-break: break-word"> {{ value }} </label>
+                  </div>
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column prop="cpf" name="CPF" [flexGrow]="1" headerClass="text-center">
+                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                  <div style="text-align: center;">
+                    CPF
+                  </div>
+                </ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <div style="text-align: center;">
+                    <label style="word-break: break-word"> {{ value }} </label>
+                  </div>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
